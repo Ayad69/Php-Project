@@ -1,13 +1,16 @@
 <?php
 session_start();
 
+
+
+
 /*
  * Initialise la connexion à la base de données et renvoie l'objet PDO
  */
 function initialiseConnexionBDD() {
 	$bdd = null;
 	try {
-		$bdd = new PDO('mysql:host=localhost;dbname=roulette_cybersecu;charset=utf8', 
+		$bdd = new PDO('mysql:host=localhost;dbname=projet;charset=utf8', 
 			'root', 
 			''
 		);	
@@ -21,12 +24,12 @@ function initialiseConnexionBDD() {
 /*
  * Vérifie les informations données par l'utilisateur et le connecte ou non
  */
-function connecteUtilisateur($utilisateur, $motdepasse) {
+function connecteUtilisateur($email, $motdepasse) {
 	$res = '';
 	$bdd = initialiseConnexionBDD();
 	if($bdd) {
-		$sql = 'SELECT * FROM roulette_joueur 
-		WHERE nom ="'.$utilisateur.'" AND motdepasse = "'.$motdepasse.'";';
+		$sql = 'SELECT * FROM utilisateur 
+		WHERE email ="'.$email.'" AND mot_de_passe = "'.$motdepasse.'";';
 		$result = $bdd->query($sql);
 		/* DEBUG pour vérifier la requête
 			var_dump($sql);
@@ -34,11 +37,10 @@ function connecteUtilisateur($utilisateur, $motdepasse) {
 			die();
 		 */
 			$data = $result->fetch();
-		if($data) {
-			$_SESSION['joueur_id'] = intval($data['identifiant']);
-			$_SESSION['joueur_nom'] = $data['nom'];
-			$_SESSION['joueur_argent'] = intval($data['argent']);
-		} else {
+if ($data) {
+    $_SESSION['id_utilisateur'] = intval($data['id_utilisateur']);
+    $_SESSION['utilisateur_email'] = $data['email'];
+} else {
 			$res = 'Utilisateur inconnu ou mot de passe erroné';
 		}
 	}
@@ -56,25 +58,3 @@ function ajouteUtilisateur($nom, $motdepasse) {
 	}
 }
 
-/**
- * Ajoute une partie jouée à la base de données
- */
-function ajoutePartie($id_joueur, $date, $mise, $gain) {
-	$bdd = initialiseConnexionBDD();
-	if($bdd) {
-		$query = $bdd->prepare('INSERT INTO roulette_partie (joueur, date, mise, gain) VALUES ( :t_id, :t_date, :t_mise, :t_gain);');
-		$query->execute(array('t_id' => $id_joueur, 't_date' => $date, 't_mise' => $mise, 't_gain' => $gain));
-	}
-}
-
-
-/**
- * Met à jour l'argent détenu par un joueur dans la base de données
- */
-function majUtilisateur($id_joueur, $argent) {
-	$bdd = initialiseConnexionBDD();
-	if($bdd) {
-		$query = $bdd->prepare('UPDATE roulette_joueur SET argent = :t_argent WHERE identifiant = :t_id;');
-		$query->execute(array('t_argent' => $argent, 't_id' => $id_joueur));
-	}
-}

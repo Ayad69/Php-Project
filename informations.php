@@ -4,15 +4,17 @@ require_once('BDD_Manager.php');
 
 $message_erreur = '';
 
+/*
 if(isset($_GET['btnConnect'])) {
     if(isset($_GET['email']) && $_GET['email'] != '' &&
         isset($_GET['motdepasse']) && $_GET['motdepasse'] != '') {
         $message_erreur = connecteUtilisateur($_GET['email'], $_GET['motdepasse']);
         if($message_erreur == '') {
-            header('Location: menu.php');
+            header('Location: index.php');
         }
     }
 }
+*/
 ?>
 
 <html>
@@ -36,47 +38,12 @@ if(isset($_GET['btnConnect'])) {
                     <br>
                         <br>
                         
-    <h2 class="alert alert-warning">Connexion</h2>
+    <h2 class="alert alert-warning">Menu</h2>
 </header>
 <br>
 <?php if($message_erreur != '')
     echo "<div class=\"alert alert-danger errorMessage\">$message_erreur</div>";
 ?>
-
-
-
-<form method="get" action="connexion.php">
-    <table id="connexionTable">
-        <tr>
-            <td colspan="3"><input type="text" name="email" placeholder="Email" /></td>
-        </tr>
-
-        <tr>
-            <td colspan="3"><input type="text" name="motdepasse" placeholder="Mot de passe" /></td>
-        </tr>
-
-        <tr>
-            <td><br><a href="#"><input class="btn btn-warning" name="btnErase" type="reset" value="Effacer" /></a></td>
-            <td><br><a href="inscription.php"><div class="btn btn-info">S'inscrire</div></a></td>
-            <td><br><input class="btn btn-primary" name="btnConnect" type="submit" value="Connexion" /></td>
-        </tr> 
-    </table>
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <hr class="separator">
 

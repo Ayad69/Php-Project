@@ -1,20 +1,11 @@
 <?php
 
-header('Location: connexion.php');
 
-require_once('BDD_Manager.php');
 
-$message_erreur = '';
+    header('Location: connexion.php');
 
-if(isset($_GET['btnConnect'])) {
-    if(isset($_GET['nom']) && $_GET['nom'] != '' &&
-        isset($_GET['motdepasse']) && $_GET['motdepasse'] != '') {
-        $message_erreur = connecteUtilisateur($_GET['nom'], $_GET['motdepasse']);
-        if($message_erreur == '') {
-            header('Location: index.php');
-        }
-    }
-}
+
+
 ?>
 
 <html>
@@ -36,19 +27,6 @@ if(isset($_GET['btnConnect'])) {
                 <br>
                     <br>
                         <br>
-                        
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="barre">Connexion </div>
 
 

@@ -85,29 +85,3 @@ h2{
     text-align: center;
 }
 
-
-
-
-.buttoninfos {
-    transition-duration: 0.4s;
-    position: absolute;
-    top: 50%;
-    left: 60%;
-    padding: 6px 10px;
-    border-radius: 10px;
-    border: 2px solid #04AA6D;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #04AA6D;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    z-index: 1005;
-    cursor: pointer;
-}
-
-.buttoninfos:hover {
-    background-color: #04AA6D; /* Green */
-    color: white;
-    z-index: 1005;
-}
