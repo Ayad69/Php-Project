@@ -40,7 +40,7 @@
             </td>
         </tr>
         
-            <td><br><a href="../index.php"><div class="btn btn-info">Retour à la connexion</div></a></td>
+            <td><br><a href="../../../index.php"><div class="btn btn-info">Retour à la connexion</div></a></td>
             <td><br><input class="btn btn-primary" name="btnSignup" type="submit" value="S'inscrire" /></td>
         </tr> 
     </table>
